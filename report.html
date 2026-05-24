@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>Отчет</title>
+  <style>
+    body {
+      font-family: "Times New Roman", serif;
+      font-size: 14pt;
+      line-height: 1.35;
+      margin: 2cm 1.5cm 2cm 3cm;
+    }
+    h1 {
+      text-align: center;
+      font-size: 24pt;
+      margin: 0 0 18pt;
+    }
+    h2 {
+      font-size: 18pt;
+      margin: 18pt 0 10pt;
+    }
+    p {
+      margin: 0 0 10pt;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10pt 0 14pt;
+    }
+    th, td {
+      border: 1px solid #666;
+      padding: 6pt 8pt;
+      vertical-align: top;
+    }
+    th {
+      text-align: center;
+    }
+    .figure-grid td {
+      width: 50%;
+      text-align: center;
+    }
+    .figure-grid img {
+      width: 100%;
+      height: auto;
+    }
+    .caption {
+      text-align: center;
+      font-style: italic;
+      margin: 6pt 0 14pt;
+    }
+    ol, ul {
+      margin-top: 0;
+      margin-bottom: 10pt;
+    }
+    li {
+      margin-bottom: 6pt;
+    }
+  </style>
+</head>
+<body>
+  <h1>Отчет</h1>
+
+  <h2>Ссылки и посылки</h2>
+
+  <p>GitHub: <a href="https://github.com/karnaukhovGA69/SET9-69--">https://github.com/karnaukhovGA69/SET9-69--</a></p>
+
+  <table>
+    <tr>
+      <th>Задача</th>
+      <th>Посылка</th>
+    </tr>
+    <tr>
+      <td>A1m</td>
+      <td><a href="https://dsahse25.contest.codeforces.com/group/SLdI1pWUpC/contest/691754/submission/375980010">375980010</a></td>
+    </tr>
+    <tr>
+      <td>A1q</td>
+      <td><a href="https://dsahse25.contest.codeforces.com/group/SLdI1pWUpC/contest/691754/submission/375980021">375980021</a></td>
+    </tr>
+    <tr>
+      <td>A1r</td>
+      <td><a href="https://dsahse25.contest.codeforces.com/group/SLdI1pWUpC/contest/691754/submission/375980403">375980403</a></td>
+    </tr>
+    <tr>
+      <td>A1rq</td>
+      <td><a href="https://dsahse25.contest.codeforces.com/group/SLdI1pWUpC/contest/691754/submission/375980411">375980411</a></td>
+    </tr>
+  </table>
+
+  <h2>Графики</h2>
+
+  <table class="figure-grid">
+    <tr>
+      <td><img src="random_avg_time_us.png" alt="Случайный набор строк: Среднее время работы"></td>
+      <td><img src="random_avg_symbol_operations.png" alt="Случайный набор строк: Среднее число посимвольных операций"></td>
+    </tr>
+    <tr>
+      <td>Среднее время работы</td>
+      <td>Среднее число посимвольных операций</td>
+    </tr>
+  </table>
+  <div class="caption">Случайный набор строк</div>
+
+  <table class="figure-grid">
+    <tr>
+      <td><img src="almost_sorted_avg_time_us.png" alt="Почти отсортированный набор строк: Среднее время работы"></td>
+      <td><img src="almost_sorted_avg_symbol_operations.png" alt="Почти отсортированный набор строк: Среднее число посимвольных операций"></td>
+    </tr>
+    <tr>
+      <td>Среднее время работы</td>
+      <td>Среднее число посимвольных операций</td>
+    </tr>
+  </table>
+  <div class="caption">Почти отсортированный набор строк</div>
+
+  <table class="figure-grid">
+    <tr>
+      <td><img src="reversed_avg_time_us.png" alt="Обратно отсортированный набор строк: Среднее время работы"></td>
+      <td><img src="reversed_avg_symbol_operations.png" alt="Обратно отсортированный набор строк: Среднее число посимвольных операций"></td>
+    </tr>
+    <tr>
+      <td>Среднее время работы</td>
+      <td>Среднее число посимвольных операций</td>
+    </tr>
+  </table>
+  <div class="caption">Обратно отсортированный набор строк</div>
+
+  <h2>Анализ результатов</h2>
+
+  <ol>
+    <li>
+      <strong>Время работы.</strong>
+      <ul>
+        <li>На наборах <code>random</code>, <code>almost_sorted</code> и <code>reversed</code> самым быстрым оказался гибридный <code>MSD Radix Sort</code> с переходом на <code>QuickSort</code> для малых подмассивов. Он стабильно выигрывает по времени и заметно опережает остальные алгоритмы на больших входных данных.</li>
+        <li>На тех же наборах обычный <code>MSD Radix Sort</code> чаще всего занимает второе или третье место. По времени он уступает гибридной версии, но все равно выглядит быстрее стандартных сравнительных сортировок.</li>
+        <li>На строках с длинными общими префиксами лучший средний результат по времени показывает алгоритм <em>Ternary String QuickSort</em>.</li>
+        <li>На больших входных данных стандартные <code>QuickSort</code> и <code>MergeSort</code> заметно уступают модифицированным строковым алгоритмам. Текущая реализация <em>String MergeSort</em> по времени тоже не дает преимущества.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Количество посимвольных операций.</strong>
+      <ul>
+        <li>На всех рассмотренных наборах минимальное число посимвольных проверок показывает обычный <code>MSD Radix Sort</code>. По данным эксперимента он остается лидером и на случайных строках, и на почти отсортированных, и на обратно отсортированных массивах.</li>
+        <li>На тех же тестах гибридная версия работает быстрее, но из-за этого страдает число сравнений. При переключении на <code>QuickSort</code> на маленьких подмассивах она по операциям немного проигрывает чистому <code>MSD</code>.</li>
+        <li>На всех наборах стандартный <code>QuickSort</code> дает самый высокий показатель посимвольных сравнений с большим отрывом. При полном сравнении строк его стоимость растет намного быстрее остальных алгоритмов.</li>
+        <li>В текущих результатах <code>String MergeSort</code> не показывает преимущества относительно обычного <code>MergeSort</code>. Их кривые по числу операций почти совпадают, поэтому эффекта от оптимизации здесь не видно.</li>
+      </ul>
+    </li>
+  </ol>
+</body>
+</html>
